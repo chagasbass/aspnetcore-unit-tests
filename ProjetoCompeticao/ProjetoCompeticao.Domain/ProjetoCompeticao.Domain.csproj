@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Academias\Enums\**" />
+    <Compile Remove="Academias\ValueObjects\**" />
+    <EmbeddedResource Remove="Academias\Enums\**" />
+    <EmbeddedResource Remove="Academias\ValueObjects\**" />
+    <None Remove="Academias\Enums\**" />
+    <None Remove="Academias\ValueObjects\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Competicoes\Enums\" />
+    <Folder Include="Competicoes\ValueObjects\" />
+    <Folder Include="Faixas\Enums\" />
+    <Folder Include="Faixas\ValueObjects\" />
+    <Folder Include="ModalidadesCampeonato\Enums\" />
+    <Folder Include="ModalidadesCampeonato\ValueObjects\" />
+    <Folder Include="TiposEliminacao\Enums\" />
+    <Folder Include="TiposEliminacao\ValueObjects\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ProjetoCompeticao.Shared\ProjetoCompeticao.Shared.csproj" />
+  </ItemGroup>
+
+</Project>
