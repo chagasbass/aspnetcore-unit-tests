@@ -1,6 +1,7 @@
 ﻿using Flunt.Notifications;
 using ProjetoCompeticao.Application.Academias.Contracts;
 using ProjetoCompeticao.Application.Academias.Dtos;
+using ProjetoCompeticao.Application.Academias.PagedResults;
 using ProjetoCompeticao.Domain.Academias.Entities;
 using ProjetoCompeticao.Domain.Academias.Extensions;
 using ProjetoCompeticao.Domain.Academias.Repositories.Read;
@@ -33,14 +34,21 @@ namespace ProjetoCompeticao.Application.ArtesMarciais.Services
             //Recebe contrato
             //valida contrato
             //se invalido, retorna objeto com erros
-            //verifica se arte ja existe
+            //verifica se academia ja existe
             //se nao retorna objeto com mensagem de nao existencia
             //se sim atualiza academia
             //Status Code de retorno 204
             //Status code de retorno de erro 400
 
             #region Fail Fast Validation
-            var academiaParaValidacao = new Academia(atualizarAcademiaDto.Nome, atualizarAcademiaDto.Endereco);
+            var enderecoAcademia = Academia.PrepararEndereco(atualizarAcademiaDto?.Endereco.Rua,
+                                                             atualizarAcademiaDto?.Endereco.Numero,
+                                                             atualizarAcademiaDto?.Endereco.Cep,
+                                                             atualizarAcademiaDto?.Endereco.Bairro,
+                                                             atualizarAcademiaDto?.Endereco.Cidade,
+                                                             atualizarAcademiaDto?.Endereco.Estado);
+
+            var academiaParaValidacao = new Academia(atualizarAcademiaDto.Nome, enderecoAcademia);
 
             if (!academiaParaValidacao.IsValid)
             {
@@ -61,7 +69,7 @@ namespace ProjetoCompeticao.Application.ArtesMarciais.Services
             }
 
             academiaExistente.AlterarNome(atualizarAcademiaDto.Nome)
-                             .AlterarEndereco(atualizarAcademiaDto.Endereco);
+                             .AlterarEndereco(enderecoAcademia);
 
             await _writeAcademiaRepository.AtualizarAcademiaAsync(academiaExistente);
 
@@ -69,7 +77,7 @@ namespace ProjetoCompeticao.Application.ArtesMarciais.Services
 
             _operacaoValida = true;
 
-            return new CommandResult(academiaExistente, _operacaoValida, AcademiaMessagesExtensions.AtualizacaoDeAcademia());
+            return new CommandResult(atualizarAcademiaDto, _operacaoValida, AcademiaMessagesExtensions.AtualizacaoDeAcademia());
         }
 
         public async Task<ICommandResult> ExcluirAcademiaAsync(Guid id)
@@ -93,7 +101,7 @@ namespace ProjetoCompeticao.Application.ArtesMarciais.Services
                 return new CommandResult(_operacaoValida, AcademiaMessagesExtensions.AcademiaNaoExiste());
             }
 
-            await _writeAcademiaRepository.ExcluirAcademiaAsync(id);
+            await _writeAcademiaRepository.ExcluirAcademiaAsync(academiaExistente);
 
             _operacaoValida = true;
 
@@ -130,7 +138,7 @@ namespace ProjetoCompeticao.Application.ArtesMarciais.Services
 
             _operacaoValida = true;
 
-            return new CommandResult(novaAcademia, _operacaoValida, AcademiaMessagesExtensions.InsercaoDeAcademia());
+            return new CommandResult(inserirAcademiaDto, _operacaoValida, AcademiaMessagesExtensions.InsercaoDeAcademia());
         }
 
         public async Task<ICommandResult> ListarAcademiasAsync(Guid id)
@@ -157,7 +165,7 @@ namespace ProjetoCompeticao.Application.ArtesMarciais.Services
             {
                 Id = academiaEncontrada.Id,
                 Nome = academiaEncontrada.Nome,
-                Endereco = academiaEncontrada.Endereco
+                Endereco = EnderecoDto.PrepararEndereco(academiaEncontrada.Endereco)
             };
 
             _notificationServices.AddStatusCode(StatusCodeOperation.Get);
@@ -165,9 +173,9 @@ namespace ProjetoCompeticao.Application.ArtesMarciais.Services
             return new CommandResult(listarAcademiaDto, _operacaoValida);
         }
 
-        public async Task<ICommandResult> ListarAcademiasAsync(FiltroAcademiaDto filtroAcademiaDto)
+        public ICommandResult ListarAcademias(FiltroAcademiaDto filtroAcademiaDto)
         {
-            var academias = await _readAcademiaRepository.ListarAcademiasAsync(filtroAcademiaDto.Pagina, filtroAcademiaDto.TamanhoPagina);
+            var academias = _readAcademiaRepository.ListarAcademias(filtroAcademiaDto.Pagina, filtroAcademiaDto.TamanhoPagina);
 
             _operacaoValida = true;
 
@@ -178,9 +186,11 @@ namespace ProjetoCompeticao.Application.ArtesMarciais.Services
                 return new CommandResult(_operacaoValida, AcademiaMessagesExtensions.PesquisaDeAcademiasSemRetorno());
             }
 
+            var academiaPagedResults = new AcademiaPagedResults(academias.Results);
+
             _notificationServices.AddStatusCode(StatusCodeOperation.Get);
 
-            return new CommandResult(academias, _operacaoValida);
+            return new CommandResult(academiaPagedResults, _operacaoValida);
         }
 
         public async Task<ICommandResult> ListarAcademiasAsync(string nome)
@@ -207,7 +217,7 @@ namespace ProjetoCompeticao.Application.ArtesMarciais.Services
             {
                 Id = academiaEncontrada.Id,
                 Nome = academiaEncontrada.Nome,
-                Endereco = academiaEncontrada.Endereco
+                Endereco = EnderecoDto.PrepararEndereco(academiaEncontrada.Endereco)
             };
 
             _notificationServices.AddStatusCode(StatusCodeOperation.Get);

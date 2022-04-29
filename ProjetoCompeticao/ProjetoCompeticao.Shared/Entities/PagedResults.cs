@@ -1,14 +1,14 @@
-﻿namespace ProjetoCompeticao.Shared.Entities
-{
-    public abstract class PagedResults<T>
-    {
-        public IEnumerable<T> Results { get; set; }
-        public int TotalCount { get; set; }
+﻿using ProjetoCompeticao.Shared.Entities.Bases;
 
-        public PagedResults(IEnumerable<T> results, int totalCount)
+namespace ProjetoCompeticao.Shared.Entities
+{
+    public class PagedResults<T> : BasePageResult where T : class
+    {
+        public IList<T> Results { get; set; }
+
+        public PagedResults()
         {
-            Results = results;
-            TotalCount = totalCount;
+            Results = new List<T>();
         }
     }
 }

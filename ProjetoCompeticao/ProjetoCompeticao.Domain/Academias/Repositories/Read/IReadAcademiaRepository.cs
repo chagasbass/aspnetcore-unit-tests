@@ -1,4 +1,5 @@
 ﻿using ProjetoCompeticao.Domain.Academias.Entities;
+using ProjetoCompeticao.Shared.Entities;
 
 namespace ProjetoCompeticao.Domain.Academias.Repositories.Read
 {
@@ -6,6 +7,6 @@ namespace ProjetoCompeticao.Domain.Academias.Repositories.Read
     {
         Task<Academia> ListarAcademiasAsync(Guid id);
         Task<Academia> ListarAcademiasAsync(string nome);
-        Task<AcademiaPagedResults> ListarAcademiasAsync(int pagina = 1, int tamanhoDaPagina = 10);
+        PagedResults<Academia> ListarAcademias(int pagina = 1, int tamanhoDaPagina = 10);
     }
 }

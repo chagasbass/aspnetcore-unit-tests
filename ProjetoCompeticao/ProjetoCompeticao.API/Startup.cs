@@ -7,6 +7,7 @@ using ProjetoCompeticao.Extensions.Documentations;
 using ProjetoCompeticao.Extensions.Healths;
 using ProjetoCompeticao.Extensions.Middlewares;
 using ProjetoCompeticao.Extensions.Performances;
+using ProjetoCompeticao.Infra.Integrations.Extensions;
 
 namespace ProjetoCompeticao.Api
 {
@@ -24,7 +25,8 @@ namespace ProjetoCompeticao.Api
             services.AddControllers();
             services.AddEndpointsApiExplorer();
             services.AddMemoryCache()
-                    .SolveAppDependencyInjections()
+                    .SolveAppDependencyInjections(Configuration)
+                    .AddHttpClientResilience()
                     .SolveStructuralAppDependencyInjection()
                     .AddOptionsPattern(Configuration)
                     .AddGlobalExceptionHandlerMiddleware()

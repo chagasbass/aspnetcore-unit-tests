@@ -10,6 +10,6 @@ namespace ProjetoCompeticao.Application.Academias.Contracts
         Task<ICommandResult> InserirAcademiaAsync(InserirAcademiaDto inserirAcademiaDto);
         Task<ICommandResult> ListarAcademiasAsync(Guid id);
         Task<ICommandResult> ListarAcademiasAsync(string nome);
-        Task<ICommandResult> ListarAcademiasAsync(FiltroAcademiaDto filtroAcademiaDto);
+        ICommandResult ListarAcademias(FiltroAcademiaDto filtroAcademiaDto);
     }
 }

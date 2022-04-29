@@ -3,21 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32319.34
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjetoCompeticao.Domain", "ProjetoCompeticao.Domain\ProjetoCompeticao.Domain.csproj", "{52671486-1672-4AB3-901A-E1BA51064325}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjetoCompeticao.Domain", "ProjetoCompeticao.Domain\ProjetoCompeticao.Domain.csproj", "{52671486-1672-4AB3-901A-E1BA51064325}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjetoCompeticao.Shared", "ProjetoCompeticao.Shared\ProjetoCompeticao.Shared.csproj", "{AE4AF83E-4D2B-453E-A35E-C4545D68731D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjetoCompeticao.Shared", "ProjetoCompeticao.Shared\ProjetoCompeticao.Shared.csproj", "{AE4AF83E-4D2B-453E-A35E-C4545D68731D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjetoCompeticao.Infra.Data", "ProjetoCompeticao.Infra.Data\ProjetoCompeticao.Infra.Data.csproj", "{C2BEBB73-77DF-4E9B-8802-D1583E5E5837}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjetoCompeticao.Infra.Data", "ProjetoCompeticao.Infra.Data\ProjetoCompeticao.Infra.Data.csproj", "{C2BEBB73-77DF-4E9B-8802-D1583E5E5837}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjetoCompeticao.Application", "ProjetoCompeticao.Application\ProjetoCompeticao.Application.csproj", "{D1705DB9-31A2-4AFC-ABDE-1ED48C4B3B26}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjetoCompeticao.Application", "ProjetoCompeticao.Application\ProjetoCompeticao.Application.csproj", "{D1705DB9-31A2-4AFC-ABDE-1ED48C4B3B26}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjetoCompeticao.Extensions", "ProjetoCompeticao.Extensions\ProjetoCompeticao.Extensions.csproj", "{80ACEDE6-1722-4DCE-84B4-ABB670FF797A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjetoCompeticao.Extensions", "ProjetoCompeticao.Extensions\ProjetoCompeticao.Extensions.csproj", "{80ACEDE6-1722-4DCE-84B4-ABB670FF797A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjetoCompeticao.Tests", "ProjetoCompeticao.Tests\ProjetoCompeticao.Tests.csproj", "{C32CFA00-6485-499F-BCA8-6D8A7244D618}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjetoCompeticao.Tests", "ProjetoCompeticao.Tests\ProjetoCompeticao.Tests.csproj", "{C32CFA00-6485-499F-BCA8-6D8A7244D618}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjetoCompeticao.API", "ProjetoCompeticao.API\ProjetoCompeticao.API.csproj", "{064561C3-2CA4-401F-A204-BB29CED3A118}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjetoCompeticao.API", "ProjetoCompeticao.API\ProjetoCompeticao.API.csproj", "{064561C3-2CA4-401F-A204-BB29CED3A118}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjetoCompeticao.Infra.Cache", "ProjetoCompeticao.Infra.Cache\ProjetoCompeticao.Infra.Cache.csproj", "{9C23451B-3EE7-421F-988C-64001B2E430C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjetoCompeticao.Infra.Cache", "ProjetoCompeticao.Infra.Cache\ProjetoCompeticao.Infra.Cache.csproj", "{9C23451B-3EE7-421F-988C-64001B2E430C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjetoCompeticao.Integration.Tests", "ProjetoCompeticao.Integration.Tests\ProjetoCompeticao.Integration.Tests.csproj", "{D27335C3-7C98-4420-AEC2-A1086F92AF56}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjetoCompeticao.Infra.Integrations", "ProjetoCompeticao.Infra.Integrations\ProjetoCompeticao.Infra.Integrations.csproj", "{2B926876-318B-4270-9558-E9332047E1F0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +61,14 @@ Global
 		{9C23451B-3EE7-421F-988C-64001B2E430C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C23451B-3EE7-421F-988C-64001B2E430C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C23451B-3EE7-421F-988C-64001B2E430C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D27335C3-7C98-4420-AEC2-A1086F92AF56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D27335C3-7C98-4420-AEC2-A1086F92AF56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D27335C3-7C98-4420-AEC2-A1086F92AF56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D27335C3-7C98-4420-AEC2-A1086F92AF56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B926876-318B-4270-9558-E9332047E1F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B926876-318B-4270-9558-E9332047E1F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B926876-318B-4270-9558-E9332047E1F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B926876-318B-4270-9558-E9332047E1F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ProjetoCompeticao.Domain\ProjetoCompeticao.Domain.csproj" />
+    <ProjectReference Include="..\ProjetoCompeticao.Infra.Integrations\ProjetoCompeticao.Infra.Integrations.csproj" />
     <ProjectReference Include="..\ProjetoCompeticao.Shared\ProjetoCompeticao.Shared.csproj" />
   </ItemGroup>
 

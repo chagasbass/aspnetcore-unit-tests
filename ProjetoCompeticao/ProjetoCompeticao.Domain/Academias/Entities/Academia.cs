@@ -20,6 +20,11 @@ namespace ProjetoCompeticao.Domain.Academias.Entities
             Validate();
         }
 
+        public static string PrepararEndereco(string rua, string numero, string cep, string bairro, string cidade, string estado)
+        {
+            return $"{rua}|{ numero}|{bairro}|{cidade}|{cep}|{estado}";
+        }
+
         public Academia AlterarNome(string nome)
         {
             Nome = nome;
@@ -41,7 +46,6 @@ namespace ProjetoCompeticao.Domain.Academias.Entities
                 .IsGreaterThan(Nome, 4, nameof(Nome), "O nome deve conter no mínimo 4 caracteres.")
                 .IsLowerThan(Nome, 50, nameof(Nome), "O nome deve conter no máximo 50 caracteres")
                 .IsNotNullOrEmpty(Endereco, nameof(Endereco), "O Endereço é obrigatório.")
-                .IsGreaterThan(Endereco, 4, nameof(Endereco), "O Endereço deve conter no máximo 200 caracteres.")
                 .IsLowerThan(Endereco, 200, nameof(Endereco), "O nome deve conter no mínimo 4 caracteres"));
         }
     }

@@ -9,6 +9,9 @@
 
 	<ItemGroup>
 		<PackageReference Include="AutoFixture" Version="4.17.0" />
+		<PackageReference Include="FluentAssertions" Version="6.6.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="6.0.4" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.4" />
 		<PackageReference Include="Microsoft.Extensions.Options" Version="6.0.0" />
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
 		<PackageReference Include="Moq" Version="4.17.2" />
@@ -25,7 +28,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\ProjetoCompeticao.API\ProjetoCompeticao.API.csproj" />
 	  <ProjectReference Include="..\ProjetoCompeticao.Application\ProjetoCompeticao.Application.csproj" />
 	  <ProjectReference Include="..\ProjetoCompeticao.Domain\ProjetoCompeticao.Domain.csproj" />
 	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="xunit.runner.json">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
+
 </Project>

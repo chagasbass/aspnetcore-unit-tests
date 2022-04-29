@@ -6,10 +6,20 @@ namespace ProjetoCompeticao.Application.Academias.Dtos
     public class InserirAcademiaDto : BaseDto<Academia>
     {
         public string Nome { get; set; }
-        public string Endereco { get; set; }
+        public EnderecoDto Endereco { get; set; }
 
         public InserirAcademiaDto() { }
 
-        public override Academia ToEntity() => new(Nome, Endereco);
+        public override Academia ToEntity()
+        {
+            var endereco = Academia.PrepararEndereco(Endereco.Rua,
+                                                     Endereco.Numero,
+                                                     Endereco.Cep,
+                                                     Endereco.Bairro,
+                                                     Endereco.Cidade,
+                                                     Endereco.Estado);
+
+            return new(Nome, endereco);
+        }
     }
 }

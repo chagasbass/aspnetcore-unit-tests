@@ -1,37 +1,22 @@
-﻿using Microsoft.Extensions.Options;
-using ProjetoCompeticao.Shared.Configurations;
-using System.Data;
-using System.Data.SqlClient;
-
+﻿using Flunt.Notifications;
+using Microsoft.EntityFrameworkCore;
+using ProjetoCompeticao.Domain.Academias.Entities;
+using System.Reflection;
 
 namespace ProjetoCompeticao.Infra.Data.DataContexts
 {
-    public class DataContext : IDisposable
+    public class DataContext : DbContext
     {
-        private readonly BaseConfigurationOptions _baseConfigurationOptions;
-        private IDbConnection _DbConnection;
+        public DbSet<Academia> Academias { get; set; }
 
-        public DataContext(IOptions<BaseConfigurationOptions> options)
+        public DataContext(DbContextOptions<DataContext> options) : base(options) { }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            _baseConfigurationOptions = options.Value;
-        }
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            modelBuilder.Ignore<Notification>();
 
-        public IDbConnection AbrirConexao()
-        {
-            if (_DbConnection is null || _DbConnection.State != ConnectionState.Open)
-            {
-                _DbConnection = new SqlConnection(_baseConfigurationOptions.StringConexaoBancoDeDados);
-                _DbConnection.Open();
-            }
-
-            return _DbConnection;
-
-        }
-
-        public void Dispose()
-        {
-            if (_DbConnection != null && _DbConnection.State == ConnectionState.Open)
-                _DbConnection.Dispose();
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

@@ -1,9 +1,6 @@
-﻿using Dapper;
-using ProjetoCompeticao.Domain.Academias.Entities;
+﻿using ProjetoCompeticao.Domain.Academias.Entities;
 using ProjetoCompeticao.Domain.Academias.Repositories.Write;
-using ProjetoCompeticao.Infra.Data.Academias.QueryHelpers;
 using ProjetoCompeticao.Infra.Data.DataContexts;
-using Z.Dapper.Plus;
 
 namespace ProjetoCompeticao.Infra.Data.Academias.Repositories
 {
@@ -16,40 +13,27 @@ namespace ProjetoCompeticao.Infra.Data.Academias.Repositories
         {
             _context = context;
 
-            Dapper.SqlMapper.Settings.CommandTimeout = 0;
-
             _academias = new List<Academia>();
-
-            AcademiaQueryHelper.GerarMapeamentoDeAcademia();
         }
 
         public async Task<Academia> AtualizarAcademiaAsync(Academia academia)
         {
-            using var connection = _context.AbrirConexao();
-
-            _academias.Add(academia);
-
-            await connection.BulkActionAsync(x => x.BulkUpdate(AcademiaQueryHelper.MappingName, _academias));
+            _context.Academias.Update(academia);
+            await _context.SaveChangesAsync();
 
             return academia;
         }
 
-        public async Task ExcluirAcademiaAsync(Guid id)
+        public async Task ExcluirAcademiaAsync(Academia academia)
         {
-            using var connection = _context.AbrirConexao();
-
-            var parametter = new { ID = id };
-
-            await connection.ExecuteAsync(AcademiaQueryHelper.ExcluirAcademia(), parametter);
+            _context.Academias.Remove(academia);
+            await _context.SaveChangesAsync();
         }
 
         public async Task<Academia> InserirAcademiaAsync(Academia academia)
         {
-            using var connection = _context.AbrirConexao();
-
-            _academias.Add(academia);
-
-            await connection.BulkActionAsync(x => x.BulkInsert(AcademiaQueryHelper.MappingName, _academias));
+            await _context.Academias.AddAsync(academia);
+            await _context.SaveChangesAsync();
 
             return academia;
         }

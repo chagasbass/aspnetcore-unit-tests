@@ -51,32 +51,32 @@ namespace ProjetoCompeticao.API.Controllers.Academias
             return FormatApiResponse(commandResult);
         }
 
-        /// <summary>
-        /// Efetua uma solitação para listar  academia pelo nome informado.
-        /// </summary>
-        /// <param name="nome">nome da academia
-        /// </param>
-        ///  <remarks>
-        /// Exemplo request:
-        ///GET /academias/{nome}
-        /// </remarks>
-        /// <response code="200">Retorna quando a solitação de listagem de academia é válida.</response>
-        /// <response code="400">Retorna quando a solitação de listagem de academia é inválida.</response>
-        /// /// <response code="404">Retorna quando a solitação de listagem  academia não foi encontrada.</response>
-        /// <response code="500">Retorna quando algum problema inesperado acontece na chamada.</response>
-        /// <returns>Retorna um objeto do tipo CommandResult contendo o retorno da chamada</returns>
-        [HttpGet("{nome}")]
-        [Consumes(MediaTypeNames.Application.Json)]
-        [ProducesResponseType(typeof(CommandResult), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(CommandResult), StatusCodes.Status404NotFound)]
-        [ProducesResponseType(typeof(CommandResult), StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<CommandResult>> ListarAcademiasAsync(string nome)
-        {
-            var commandResult = (CommandResult)await _academiaApplicationServices.ListarAcademiasAsync(nome);
+        ///// <summary>
+        ///// Efetua uma solitação para listar  academia pelo nome informado.
+        ///// </summary>
+        ///// <param name="nome">nome da academia
+        ///// </param>
+        /////  <remarks>
+        ///// Exemplo request:
+        /////GET /academias/{nome}
+        ///// </remarks>
+        ///// <response code="200">Retorna quando a solitação de listagem de academia é válida.</response>
+        ///// <response code="400">Retorna quando a solitação de listagem de academia é inválida.</response>
+        ///// /// <response code="404">Retorna quando a solitação de listagem  academia não foi encontrada.</response>
+        ///// <response code="500">Retorna quando algum problema inesperado acontece na chamada.</response>
+        ///// <returns>Retorna um objeto do tipo CommandResult contendo o retorno da chamada</returns>
+        //[HttpGet("{nome}")]
+        //[Consumes(MediaTypeNames.Application.Json)]
+        //[ProducesResponseType(typeof(CommandResult), StatusCodes.Status200OK)]
+        //[ProducesResponseType(typeof(CommandResult), StatusCodes.Status404NotFound)]
+        //[ProducesResponseType(typeof(CommandResult), StatusCodes.Status400BadRequest)]
+        //[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
+        //public async Task<ActionResult<CommandResult>> ListarAcademiasAsync(string nome)
+        //{
+        //    var commandResult = (CommandResult)await _academiaApplicationServices.ListarAcademiasAsync(nome);
 
-            return FormatApiResponse(commandResult);
-        }
+        //    return FormatApiResponse(commandResult);
+        //}
 
         /// <summary>
         /// Efetua uma solitação para listar  academias usando filtro de quantidade de registros e tamanho de páginas
@@ -98,9 +98,9 @@ namespace ProjetoCompeticao.API.Controllers.Academias
         [ProducesResponseType(typeof(CommandResult), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(CommandResult), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<CommandResult>> ListarAcademiasAsync([FromQuery] FiltroAcademiaDto filtroAcademiaDto)
+        public ActionResult<CommandResult> ListarAcademias([FromQuery] FiltroAcademiaDto filtroAcademiaDto)
         {
-            var commandResult = (CommandResult)await _academiaApplicationServices.ListarAcademiasAsync(filtroAcademiaDto);
+            var commandResult = (CommandResult)_academiaApplicationServices.ListarAcademias(filtroAcademiaDto);
 
             return FormatApiResponse(commandResult);
         }
